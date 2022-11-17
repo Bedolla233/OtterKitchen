@@ -35,6 +35,9 @@
         background-color: aqua;
         color: white;
     }
+    body {
+      background-color: rgb(255, 211, 226);
+    }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
@@ -50,38 +53,29 @@
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Otter Kitchen</a>
-    </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Recepies</a></li>
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="#">Recipes</a></li>
+        <li><a href="/vegetarian">Vegetarian</a></li>
+        <li><a href="/random">Random</a></li>
       </ul>
     </div>
   </div>
 </nav>
   
 <div class="container-fluid text-center">    
-  <div class="row content">
+  
     <div class="col-sm-8 text-left"> 
-      <h1>Welcome</h1>
-      <p> Welcome to the online web cookbook</p>
+      <h1>Welcome To OtterKitchen</h1>
+      <p> Discover various of Recipes</p>
       <hr>
       <h3>Test</h3>
       <p>Recepies samples</p>
     </div>
-
-  </div>
 </div>
 
-<footer class="container-fluid text-center">
+<footer>
   <p>Footer Text</p>
 </footer>
 
