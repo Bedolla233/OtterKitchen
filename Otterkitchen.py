@@ -35,3 +35,14 @@ def veggie():
     except:
         print('please try again')
     return render_template("vegetarian.html", data = data)
+
+endpoint = 'https://api.spoonacular.com/recipes/random?apiKey=601b6bca78294aaf9ea387a7157142bf&number=3&type=breakfast&instructionsRequired=true'
+@app.route("/breakfast")
+def breakfast():
+    try:
+        r = requests.get(endpoint)
+        data = r.json()
+        print(data)
+    except:
+        print('please try again')
+    return render_template("breakfast.html", data = data)
