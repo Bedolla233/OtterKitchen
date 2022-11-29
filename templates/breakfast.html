@@ -38,6 +38,12 @@
     body {
       background-color: rgb(255, 211, 226);
     }
+
+    .containerRecipes {
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -77,11 +83,13 @@
 {% block content %}
 
   {% if data %}
-  {% for i in data['recipes'] %}
-  <img src="{{i['image']}}"> <br>
-  {{i['instructions']}} <br>
-  <hr>
-  
+    {% for i in data['recipes'] %}
+    <div class = "containerRecipes">
+        <img src="{{i['image']}}" style="float:left"> 
+        {{i['instructions']}} 
+    </div>
+    <hr>
+
   {% endfor %}
 
 {% else %}
