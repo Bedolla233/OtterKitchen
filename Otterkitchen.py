@@ -44,6 +44,7 @@ def main():
     return render_template("frontpage.html", foodFacts = foodFacts, jokesList=jokesList)
 
 
+
 @app.route("/random")
 def index():
     try:
