@@ -55,7 +55,10 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
+
+        <li class="active"><a href="/"><img src="https://api.dineoncampus.com/files/test/path/ce449f9e-9fb6-410d-b362-75d03d8f8a93.png" height="30dp" width="60dp"></a></li>
         <li class="active"><a href="/">Home</a></li>
+
         <li><a href="#">Recipes</a></li>
         <li><a href="/vegetarian">Vegetarian</a></li>
         <li><a href="/breakfast">Breakfast</a></li>
@@ -70,9 +73,27 @@
     <div class="col-sm-8 text-left"> 
       <h1>Welcome To OtterKitchen</h1>
       <p> Discover various of Recipes</p>
+
       <hr>
-      <h3>Test</h3>
-      <p>Recepies samples</p>
+      <h1>Food facts</h1>
+      <p> Here are some fun food facts:</p>
+      <ol>
+      {% for fact in foodFacts %}
+      <li><p>{{ fact }}</p></li>
+      {% endfor %}
+      </ol>
+
+      <hr>
+      <h1>Food Jokes</h1>
+      <p> Here are some fun food facts:</p>
+      <ol>
+      {% for joke in jokesList %}
+      <li><p>{{ joke }}</p></li>
+      {% endfor %}
+      </ol>
+      <hr>
+      <h3>About us</h3>
+      <p>This page is made for anyone who wants to try to create some new dishes. We have a variety of dishes and each category should help you find the right one. Choose what type of dinner you want to have, each category display some random dish, if your not satisfied with the reaults reclick the tab and new dishes appears.</p>
     </div>
 </div>
 
