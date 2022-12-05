@@ -117,18 +117,13 @@
     </div>
     
       <div class ="InstructionContainer"><font size="+1"><b>{{i['instructions']}}</b> </font> </div>
-  </div>
-      
-      
-  
+  </div>    
   <hr>
-
-
   {% endfor %}
   
-{% else %}
-  no data
-{% endif %}
+  {% else %}
+    no data
+  {% endif %}
 {% endblock %}
 
 
