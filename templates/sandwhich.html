@@ -38,6 +38,12 @@
     body {
       background-color: rgb(255, 211, 226);
     }
+
+    .containerRecipes {
+        display: flex;
+        align-items: left;
+        justify-content: left
+    }
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -59,7 +65,7 @@
         <li><a href="/vegetarian">Vegetarian</a></li>
         <li><a href="/breakfast">Breakfast</a></li>
         <li><a href="/sandwhich">Sandwhich</a></li>
-        <li><a href="/random">Radom</a></li>
+        <li><a href="/random">Random</a></li>
       </ul>
     </div>
   </div>
@@ -69,7 +75,7 @@
 
 <div class="container-fluid text-center">    
       <div class="col-sm-8 text-left"> 
-        <h1> vegetarian Recipes to Try!</h1>
+        <h1> Easy Sandwhich recipes!</h1>
         <hr>
       </div>
   </div>
@@ -78,11 +84,16 @@
 {% block content %}
 
   {% if data %}
-  {% for i in data['recipes'] %}
-  <img src="{{i['image']}}"> <br>
-  {{i['instructions']}} <br>
-  <hr>
   
+    {% for i in data %}
+
+    <div class = "containerRecipes">
+        <img src="https://spoonacular.com/recipeImages/{{i['id']}}-556x370.{{i['imageType']}}" style="float:left"> 
+        {{i['instructions']}} 
+        
+    </div>
+    <hr>
+
   {% endfor %}
 
 {% else %}
