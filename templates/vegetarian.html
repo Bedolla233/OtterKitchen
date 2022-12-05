@@ -38,6 +38,27 @@
     body {
       background-color: rgb(255, 211, 226);
     }
+    .containerRecipes {
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    .containerIngredients{
+      padding-left: 40px;
+      align-items: flex-start;
+      justify-content: left;
+    }
+
+    .InstructionContainer{
+      align-items: top;
+      justify-content: space-around;
+      padding-top: 100px;
+      padding-left: 150px;
+      padding-right: 150px;
+    }
+      br{
+        padding: 0px 20px 0px 0;
+      }
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -58,7 +79,8 @@
         <li><a href="#">Recipes</a></li>
         <li><a href="/vegetarian">Vegetarian</a></li>
         <li><a href="/breakfast">Breakfast</a></li>
-        <li><a href="/random">Radom</a></li>
+        <li><a href="/sandwhich">Sandwhich</a></li>
+        <li><a href="/random">Random</a></li>
       </ul>
     </div>
   </div>
@@ -74,20 +96,34 @@
   </div>
   
 
-{% block content %}
+  {% block content %}
 
   {% if data %}
   {% for i in data['recipes'] %}
-  <img src="{{i['image']}}"> <br>
-  {{i['instructions']}} <br>
+  <div><font size="+1.5"> <b>{{i['title']}}</b></font> </div>
+  <div class = "containerRecipes">
+      
+      <img src="{{i['image']}}" style="float:left">
+      <div>
+        <div class = 'containerIngredients'>
+          <font size="+2"> <b> &nbsp; INGREDIENTS</b> </font> <br>
+          {% for j in i['extendedIngredients']%}
+          <font size="+1"><b>&nbsp;
+            &#x2022; {{j['name']}}</b> </font><br>
+          {%endfor%} 
+      </div>
+    </div>
+    
+      <div class ="InstructionContainer"><font size="+1"><b>{{i['instructions']}}</b> </font> </div>
+  </div>    
   <hr>
-  
   {% endfor %}
-
-{% else %}
-  no data
-{% endif %}
+  
+  {% else %}
+    no data
+  {% endif %}
 {% endblock %}
+
 <br><br>
 
 <footer class="container-fluid text-center">

@@ -13,9 +13,6 @@
       margin-bottom: 0;
       border-radius: 0;
     }
-    img {
-      border: 5px solid #717171;
-    }
     
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
@@ -38,29 +35,14 @@
         background-color: aqua;
         color: white;
     }
-    .containerRecipes {
-        display: flex;
-      }
-    .containerIngredients{
-      padding-left: 40px;
-      align-items: flex-start;
-      justify-content: left;
-    }
-
-    .InstructionContainer{
-      align-items: top;
-      justify-content: space-around;
-      padding-top: 100px;
-      padding-left: 150px;
-      padding-right: 150px;
-    }
-      br{
-        padding: 0px 20px 0px 0;
-      }
-    
-    
     body {
       background-color: rgb(255, 211, 226);
+    }
+
+    .containerRecipes {
+        display: flex;
+        align-items: left;
+        justify-content: left
     }
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
@@ -79,8 +61,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home</a></li>
-        <li><a href="#">Recipes</a></li>
+        <li><a href="#"> Recipes </a></li>
         <li><a href="/vegetarian">Vegetarian</a></li>
+        <li><a href="/breakfast">Breakfast</a></li>
         <li><a href="/sandwhich">Sandwhich</a></li>
         <li><a href="/random">Random</a></li>
       </ul>
@@ -92,7 +75,7 @@
 
 <div class="container-fluid text-center">    
       <div class="col-sm-8 text-left"> 
-        <h1> Random Recipe that you can try!</h1>
+        <h1> Easy Sandwhich recipes!</h1>
         <hr>
       </div>
   </div>
@@ -101,32 +84,22 @@
 {% block content %}
 
   {% if data %}
-  {% for i in data['recipes'] %}
-  <div><font size="+1.5"> <b>{{i['title']}}</b></font> </div>
-  <div class = "containerRecipes">
-      
-      <img src="{{i['image']}}" style="float:left">
-      <div>
-        <div class = 'containerIngredients'>
-          <font size="+2"> <b> &nbsp; INGREDIENTS</b> </font> <br>
-          {% for j in i['extendedIngredients']%}
-          <font size="+1"><b>&nbsp;
-            &#x2022; {{j['name']}}</b> </font><br>
-          {%endfor%} 
-      </div>
-    </div>
-    
-      <div class ="InstructionContainer"><font size="+1"><b>{{i['instructions']}}</b> </font> </div>
-  </div>    
-  <hr>
-  {% endfor %}
   
-  {% else %}
-    no data
-  {% endif %}
+    {% for i in data %}
+
+    <div class = "containerRecipes">
+        <img src="https://spoonacular.com/recipeImages/{{i['id']}}-556x370.{{i['imageType']}}" style="float:left"> 
+        {{i['instructions']}} 
+        
+    </div>
+    <hr>
+
+  {% endfor %}
+
+{% else %}
+  no data
+{% endif %}
 {% endblock %}
-
-
 <br><br>
 
 <footer class="container-fluid text-center">
