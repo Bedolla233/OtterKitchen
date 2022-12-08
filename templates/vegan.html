@@ -13,6 +13,9 @@
       margin-bottom: 0;
       border-radius: 0;
     }
+    img {
+      border: 5px solid #717171;
+    }
     
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
@@ -35,10 +38,30 @@
         background-color: aqua;
         color: white;
     }
+    .containerRecipes {
+        display: flex;
+      }
+    .containerIngredients{
+      padding-left: 40px;
+      align-items: flex-start;
+      justify-content: left;
+    }
+
+    .InstructionContainer{
+      align-items: top;
+      justify-content: space-around;
+      padding-top: 100px;
+      padding-left: 150px;
+      padding-right: 150px;
+    }
+      br{
+        padding: 0px 20px 0px 0;
+      }
+    
+    
     body {
       background-color: rgb(255, 211, 226);
     }
-    
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -55,10 +78,9 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-
+        
         <li class="active"><a href="/"><img src="https://api.dineoncampus.com/files/test/path/ce449f9e-9fb6-410d-b362-75d03d8f8a93.png" height="30dp" width="60dp"></a></li>
         <li class="active"><a href="/">Home</a></li>
-
         <!-- <li><a href="#">Recipes</a></li> -->
         <li><a href="/vegetarian">Vegetarian</a></li>
         <li><a href="/vegan">Vegan</a></li>
@@ -70,36 +92,48 @@
   </div>
 </nav>
   
-<!-- <div class="container-fluid text-center">    
+
+
+<div class="container-fluid text-center">    
+      <div class="col-sm-8 text-left"> 
+        <h1> Vegan Recipe that you can try!</h1>
+        <hr>
+      </div>
+  </div>
   
-    <div class="col-sm-8 text-left"> 
-      <h1>Welcome To OtterKitchen</h1>
-      <p> Discover various of Recipes</p>
 
-      <hr>
-      <h1>Food facts</h1>
-      <p> Here are some fun food facts:</p>
-      <ol>
-      {% for fact in foodFacts %}
-      <li><p>{{ fact }}</p></li>
-      {% endfor %}
-      </ol>
+{% block content %}
 
-      <hr>
-      <h1>Food Jokes</h1>
-      <p> Here are some fun food facts:</p>
-      <ol>
-      {% for joke in jokesList %}
-      <li><p>{{ joke }}</p></li>
-      {% endfor %}
-      </ol>
-      <hr>
-      <h3>About us</h3>
-      <p>This page is made for anyone who wants to try to create some new dishes. We have a variety of dishes and each category should help you find the right one. Choose what type of dinner you want to have, each category display some random dish, if your not satisfied with the reaults reclick the tab and new dishes appears.</p>
+  {% if data %}
+  {% for i in data['recipes'] %}
+  <div><font size="+1.5"> <b>{{i['title']}}</b></font> </div>
+  <div class = "containerRecipes">
+      
+      <img src="{{i['image']}}" style="float:left">
+      <div>
+        <div class = 'containerIngredients'>
+          <font size="+2"> <b> &nbsp; INGREDIENTS</b> </font> <br>
+          {% for j in i['extendedIngredients']%}
+          <font size="+1"><b>&nbsp;
+            &#x2022; {{j['name']}}</b> </font><br>
+          {%endfor%} 
+      </div>
     </div>
-</div> -->
+    
+      <div class ="InstructionContainer"><font size="+1"><b>{{i['instructions']}}</b> </font> </div>
+  </div>    
+  <hr>
+  {% endfor %}
+  
+  {% else %}
+    no data
+  {% endif %}
+{% endblock %}
 
-<footer>
+
+<br><br>
+
+<footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
 
