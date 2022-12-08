@@ -25,22 +25,22 @@ for i in range(3):
 
 @app.route("/")
 def main():
-    # foodFacts = []
+    foodFacts = []
 
-    # for i in range(3):
-    #     req = requests.get(endpoint2)
-    #     data = req.json()
-    #     singleFact = example
-    #     foodFacts.append(singleFact)
+    for i in range(3):
+        req = requests.get(endpoint2)
+        data = req.json()
+        singleFact = data.get('text')
+        foodFacts.append(singleFact)
     
-    # jokesList = []
-    # for i in range(3):
-    #     req2 = requests.get(endpoint3)
-    #     data = req2.json()
-    #     singleJoke =  example2
-    #     jokesList.append(singleJoke)
+    jokesList = []
+    for i in range(3):
+        req2 = requests.get(endpoint3)
+        data = req2.json()
+        singleJoke =  data.get('text')
+        jokesList.append(singleJoke)
 
-    return render_template("frontpage.html") #, foodFacts = foodFacts, jokesList=jokesList)
+    return render_template("frontpage.html", foodFacts = foodFacts, jokesList=jokesList)
 
 
 @app.route("/random")
