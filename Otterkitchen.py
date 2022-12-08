@@ -10,12 +10,12 @@ my_key = 'd53b43f7d9d14401a56568b6af67fe2e'
 
 endpoint1 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}'
 
-endpoint2 = 'https://api.spoonacular.com/food/trivia/random?apiKey=601b6bca78294aaf9ea387a7157142bf'
+endpoint2 = f'https://api.spoonacular.com/food/trivia/random?apiKey={my_key}'
 
-endpoint3 = 'https://api.spoonacular.com/food/jokes/random?apiKey=601b6bca78294aaf9ea387a7157142bf'
+endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey={my_key}'
 
-
-'''for i in range(3):
+'''foodFacts = []
+for i in range(3):
     req = requests.get(endpoint2)
     data = req.json()
     singleFact = data.get("text")
@@ -25,21 +25,22 @@ endpoint3 = 'https://api.spoonacular.com/food/jokes/random?apiKey=601b6bca78294a
 
 @app.route("/")
 def main():
-    foodFacts = []
-    for i in range(3):
-        req = requests.get(endpoint2)
-        data = req.json()
-        singleFact = data.get("text")
-        foodFacts.append(singleFact)
-    
-    jokesList = []
-    for i in range(3):
-        req2 = requests.get(endpoint3)
-        data = req2.json()
-        singleJoke = data.get("text")
-        jokesList.append(singleJoke)
+    # foodFacts = []
 
-    return render_template("frontpage.html", foodFacts = foodFacts, jokesList=jokesList)
+    # for i in range(3):
+    #     req = requests.get(endpoint2)
+    #     data = req.json()
+    #     singleFact = example
+    #     foodFacts.append(singleFact)
+    
+    # jokesList = []
+    # for i in range(3):
+    #     req2 = requests.get(endpoint3)
+    #     data = req2.json()
+    #     singleJoke =  example2
+    #     jokesList.append(singleJoke)
+
+    return render_template("frontpage.html") #, foodFacts = foodFacts, jokesList=jokesList)
 
 
 @app.route("/random")
@@ -75,7 +76,7 @@ def breakfast():
         print('please try again')
     return render_template("breakfast.html", data = data)
 
-endpoint = f'https://api.spoonacular.com/recipes/autocomplete?number=4&query=sandwhich&apiKey={my_key}&'
+endpoint = f'https://api.spoonacular.com/recipes/autocomplete?number=4&query=sandwhich&apiKey={my_key}'
 @app.route("/sandwhich")
 def sandwhich():
     try:
@@ -85,3 +86,15 @@ def sandwhich():
     except:
         print('please try again')
     return render_template("sandwhich.html", data = data)
+
+
+endpoint3 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=vegan&instructionsRequired=true'
+@app.route("/vegan")
+def vegan():
+    try:
+        r = requests.get(endpoint3)
+        data = r.json()
+        # print(data)
+    except:
+        print('please try again')
+    return render_template("vegan.html", data = data)
