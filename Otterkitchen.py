@@ -6,13 +6,13 @@ from flask_bootstrap import Bootstrap5
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 
-my_key = 'd53b43f7d9d14401a56568b6af67fe2e'
+my_key = 'cd39d1a49e8a4ac994819fb6a1a19431'
 
 endpoint1 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}'
 
 endpoint2 = f'https://api.spoonacular.com/food/trivia/random?apiKey={my_key}'
 
-endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey={my_key}'
+endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey=cd39d1a49e8a4ac994819fb6a1a19431'
 
 '''foodFacts = []
 for i in range(3):
@@ -34,10 +34,13 @@ def main():
         foodFacts.append(singleFact)
     
     jokesList = []
+    endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey=cd39d1a49e8a4ac994819fb6a1a19431'
     for i in range(3):
         req2 = requests.get(endpoint3)
         data = req2.json()
+        print(data)
         singleJoke =  data.get('text')
+        print(singleJoke)
         jokesList.append(singleJoke)
 
     return render_template("frontpage.html", foodFacts = foodFacts, jokesList=jokesList)
@@ -76,16 +79,27 @@ def breakfast():
         print('please try again')
     return render_template("breakfast.html", data = data)
 
-endpoint = f'https://api.spoonacular.com/recipes/autocomplete?number=4&query=sandwhich&apiKey={my_key}'
+endpoint = f'https://api.spoonacular.com/recipes/autocomplete?number=5&query=Sub&apiKey={my_key}'
 @app.route("/sandwhich")
 def sandwhich():
+    foodData = []
+    foodFinalData = []
     try:
         r = requests.get(endpoint)
         data = r.json()
-        # print(data)
+        # print(data[0])
+        for i in data:
+            foodData.append(i['id'])
+            print(i['id'])
+        # print(foodData)
+        endpoint4 = f'https://api.spoonacular.com/recipes/informationBulk?apiKey={my_key}&ids={foodData[0]},{foodData[4]},{foodData[2]}'
+        foodR = requests.get(endpoint4)
+        foodFinalData = foodR.json()
+
+
     except:
         print('please try again')
-    return render_template("sandwhich.html", data = data)
+    return render_template("sandwhich.html", data = foodFinalData)
 
 
 endpoint3 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=vegan&instructionsRequired=true'
