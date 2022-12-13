@@ -47,6 +47,10 @@
       }
       .row.content {height:auto;} 
     }
+    .search{
+      margin-top: 10px;
+
+    }
   </style>
 </head>
 <body>
@@ -55,15 +59,20 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-
         <li class="active"><a href="/"><img src="https://api.dineoncampus.com/files/test/path/ce449f9e-9fb6-410d-b362-75d03d8f8a93.png" height="30dp" width="60dp"></a></li>
-        <li class="active"><a href="/">Home</a></li>
-
-        <li><a href="#">Recipes</a></li>
         <li><a href="/vegetarian">Vegetarian</a></li>
         <li><a href="/breakfast">Breakfast</a></li>
         <li><a href="/random">Random</a></li>
+        <li><a href="/vegan">Vegan</a></li>
+        <li><a href="/sandwhich">Sandwich</a></li>
+        
       </ul>
+      <form method = "POST" action="{{ url_for('search') }}" class = "search"><input class="searchfield" type="search" placeholder="search" aria-label="Search" name="searched">
+        {{ form.hidden_tag() }}
+        <button class = "SearchButton" type="submit">
+            Search
+        </button>
+      </form>
     </div>
   </div>
 </nav>
@@ -71,10 +80,10 @@
 <div class="container-fluid text-center">    
   
     <div class="col-sm-8 text-left"> 
-      <h1>Welcome To OtterKitchen</h1>
-      <p> Discover various of Recipes</p>
-
+      <h1>Welcome</h1>
+      <p> Welcome to the online web cookbook</p>
       <hr>
+
       <h1>Food facts</h1>
       <p> Here are some fun food facts:</p>
       <ol>
@@ -82,7 +91,6 @@
       <li><p>{{ fact }}</p></li>
       {% endfor %}
       </ol>
-
       <hr>
       <h1>Food Jokes</h1>
       <p> Here are some fun food facts:</p>
@@ -97,8 +105,8 @@
     </div>
 </div>
 
-<footer>
-  <p>Footer Text</p>
+<footer id="footer">
+  <p>CST205 OtterKitchen</p>
 </footer>
 
 </body>

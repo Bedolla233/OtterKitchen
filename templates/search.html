@@ -31,11 +31,6 @@
       padding: 15px;
     }
 
-    .search{
-      margin-top: 10px;
-
-    }
-
     .navbar navbar-inverse {
         background-color: aqua;
         color: white;
@@ -43,6 +38,7 @@
     body {
       background-color: rgb(255, 211, 226);
     }
+    
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -50,6 +46,10 @@
         padding: 15px;
       }
       .row.content {height:auto;} 
+    }
+    .search{
+      margin-top: 10px;
+
     }
   </style>
 </head>
@@ -77,31 +77,18 @@
     </div>
   </nav>
   
-
-
 <div class="container-fluid text-center">    
-      <div class="col-sm-8 text-left"> 
-        <h1> Easy Breakfast recipes!</h1>
-        <hr>
-      </div>
-  </div>
   
+    <div class="col-sm-8 text-left"> 
+      {% for element in values %}
+      <img src="{{ element.get('image') }}">
+      <h2> {{ element.get('title') }}</h2>
+      <p> {{ element.get('instructions') }} </p>
+      {% endfor %}
 
-{% block content %}
 
-  {% if data %}
-  {% for i in data['recipes'] %}
-  <img src="{{i['image']}}"> <br>
-  {{i['instructions']}} <br>
-  <hr>
-  
-  {% endfor %}
-
-{% else %}
-  no data
-{% endif %}
-{% endblock %}
-<br><br>
+    </div>
+</div>
 
 <footer id="footer">
   <p>CST205 OtterKitchen</p>
