@@ -38,9 +38,9 @@ def main():
     for i in range(3):
         req2 = requests.get(endpoint3)
         data = req2.json()
-        print(data)
+        # print(data)
         singleJoke =  data.get('text')
-        print(singleJoke)
+        # print(singleJoke)
         jokesList.append(singleJoke)
 
     return render_template("frontpage.html", foodFacts = foodFacts, jokesList=jokesList)
