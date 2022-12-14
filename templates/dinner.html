@@ -31,11 +31,6 @@
       padding: 15px;
     }
 
-    .search{
-      margin-top: 10px;
-
-    }
-
     .navbar navbar-inverse {
         background-color: aqua;
         color: white;
@@ -67,7 +62,6 @@
       br{
         padding: 0px 20px 0px 0;
       }
-
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -85,36 +79,30 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/"><img src="https://api.dineoncampus.com/files/test/path/ce449f9e-9fb6-410d-b362-75d03d8f8a93.png" height="30dp" width="60dp"></a></li>
-          <li><a href="/vegetarian">Vegetarian</a></li>
-          <li><a href="/breakfast">Breakfast</a></li>
-          <li><a href="/lunch">Lunch</a></li>
-          <li><a href="/dinner">Dinner</a></li>
-          <li><a href="/random">Random</a></li>
-          <li><a href="/vegan">Vegan</a></li>
-          <li><a href="/sandwhich">Sandwich</a></li>
-          
-        </ul>
-        <form method = "POST" action="{{ url_for('search') }}" class = "search"><input class="searchfield" type="search" placeholder="search" aria-label="Search" name="searched">
-          {{ form.hidden_tag() }}
-          <button class = "SearchButton" type="submit">
-              Search
-          </button>
-        </form>
-      </div>
-
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/"><img src="https://api.dineoncampus.com/files/test/path/ce449f9e-9fb6-410d-b362-75d03d8f8a93.png" height="30dp" width="60dp"></a></li>
+        <li class="active"><a href="/">Home</a></li>
+        <!-- <li><a href="#">Recipes</a></li> -->
+        <li><a href="/vegetarian">Vegetarian</a></li>
+        <li><a href="/vegan">Vegan</a></li>
+        <li><a href="/breakfast">Breakfast</a></li>
+        <li><a href="/lunch">Lunch</a></li>
+        <li><a href="/dinner">Dinner</a></li>
+        <li><a href="/sandwhich">Sandwhich</a></li>
+        <li><a href="/random">Random</a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
   
 
 
 <div class="container-fluid text-center">    
       <div class="col-sm-8 text-left"> 
-        <h1> Easy Breakfast recipes!</h1>
+        <h1> Easy Dinner Recipes!</h1>
         <hr>
       </div>
   </div>
@@ -124,7 +112,6 @@
 
   {% if data %}
   {% for i in data['recipes'] %}
-
   <div><font size="+1.5"> <b>{{i['title']}}</b></font> </div>
   <div class = "containerRecipes">
       
@@ -142,7 +129,6 @@
       <div class ="InstructionContainer"><font size="+1"><b>{{i['instructions']}}</b> </font> </div>
   </div>    
   <hr>
-
   {% endfor %}
   
   {% else %}
@@ -152,8 +138,7 @@
 <br><br>
 
 <footer id="footer">
-  <p>CST205 OtterKitchen</p>
-
+  <p>Fall 2022 CST205</p>
 </footer>
 
 </body>
