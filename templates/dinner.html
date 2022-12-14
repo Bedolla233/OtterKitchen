@@ -38,6 +38,7 @@
     body {
       background-color: rgb(255, 211, 226);
     }
+
     .containerRecipes {
         display: flex;
         align-items: center;
@@ -61,11 +62,6 @@
       br{
         padding: 0px 20px 0px 0;
       }
-      #footer{
-      position:fixed;
-      bottom: 0;
-      width: 100%;
-    }
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -73,6 +69,11 @@
         padding: 15px;
       }
       .row.content {height:auto;} 
+    }
+    #footer{
+      position:fixed;
+      bottom: 0;
+      width: 100%;
     }
   </style>
 </head>
@@ -82,7 +83,6 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-
         <li class="active"><a href="/"><img src="https://api.dineoncampus.com/files/test/path/ce449f9e-9fb6-410d-b362-75d03d8f8a93.png" height="30dp" width="60dp"></a></li>
         <li class="active"><a href="/">Home</a></li>
         <!-- <li><a href="#">Recipes</a></li> -->
@@ -102,7 +102,7 @@
 
 <div class="container-fluid text-center">    
       <div class="col-sm-8 text-left"> 
-        <h1>Tasty Vegetarian Recipes, a must have!</h1>
+        <h1> Easy Dinner Recipes!</h1>
         <hr>
       </div>
   </div>
@@ -135,7 +135,6 @@
     no data
   {% endif %}
 {% endblock %}
-
 <br><br>
 
 <footer id="footer">

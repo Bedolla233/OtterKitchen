@@ -57,11 +57,11 @@ def index():
     return render_template("random.html", data = data)
 
 
-endpoint1 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&tags=vegetarian&instructionsRequired=true'
+endpoint0 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&tags=vegetarian&instructionsRequired=true'
 @app.route("/vegetarian")
 def veggie():
     try:
-        r = requests.get(endpoint1)
+        r = requests.get(endpoint0)
         data = r.json()
         # print(data)
     except:
@@ -79,21 +79,44 @@ def breakfast():
         print('please try again')
     return render_template("breakfast.html", data = data)
 
-endpoint = f'https://api.spoonacular.com/recipes/autocomplete?number=5&query=Sub&apiKey={my_key}'
+endpoint2 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=lunch&instructionsRequired=true'
+@app.route("/lunch")
+def breakfast():
+    try:
+        r = requests.get(endpoint2)
+        data = r.json()
+        # print(data)
+    except:
+        print('please try again')
+    return render_template("lunch.html", data = data)
+
+
+endpoint3 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=dinner&instructionsRequired=true'
+@app.route("/dinner")
+def breakfast():
+    try:
+        r = requests.get(endpoint3)
+        data = r.json()
+        # print(data)
+    except:
+        print('please try again')
+    return render_template("dinner.html", data = data)
+
+endpoint4 = f'https://api.spoonacular.com/recipes/autocomplete?number=5&query=Sub&apiKey={my_key}'
 @app.route("/sandwhich")
 def sandwhich():
     foodData = []
     foodFinalData = []
     try:
-        r = requests.get(endpoint)
+        r = requests.get(endpoint4)
         data = r.json()
         # print(data[0])
         for i in data:
             foodData.append(i['id'])
             print(i['id'])
         # print(foodData)
-        endpoint4 = f'https://api.spoonacular.com/recipes/informationBulk?apiKey={my_key}&ids={foodData[0]},{foodData[4]},{foodData[2]}'
-        foodR = requests.get(endpoint4)
+        endpoint5 = f'https://api.spoonacular.com/recipes/informationBulk?apiKey={my_key}&ids={foodData[0]},{foodData[4]},{foodData[2]}'
+        foodR = requests.get(endpoint5)
         foodFinalData = foodR.json()
 
 
@@ -102,11 +125,11 @@ def sandwhich():
     return render_template("sandwhich.html", data = foodFinalData)
 
 
-endpoint3 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=vegan&instructionsRequired=true'
+endpoint6 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=vegan&instructionsRequired=true'
 @app.route("/vegan")
 def vegan():
     try:
-        r = requests.get(endpoint3)
+        r = requests.get(endpoint6)
         data = r.json()
         # print(data)
     except:
