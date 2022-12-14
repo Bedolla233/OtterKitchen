@@ -81,7 +81,7 @@ def breakfast():
 
 endpoint2 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=lunch&instructionsRequired=true'
 @app.route("/lunch")
-def breakfast():
+def lunch():
     try:
         r = requests.get(endpoint2)
         data = r.json()
@@ -93,7 +93,7 @@ def breakfast():
 
 endpoint3 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=dinner&instructionsRequired=true'
 @app.route("/dinner")
-def breakfast():
+def dinner():
     try:
         r = requests.get(endpoint3)
         data = r.json()
