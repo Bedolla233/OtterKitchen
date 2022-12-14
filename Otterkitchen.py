@@ -12,19 +12,19 @@ import os
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 
-my_key = '999aeb4a958e44708277b63bcdc6ec7b'
+my_key = 'f5d47b4fce7a4e9d912132576aea091c'
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 csrf = CSRFProtect(app)
 csrf.init_app(app)
 
-endpoint1 = 'https://api.spoonacular.com/recipes/random?apiKey=999aeb4a958e44708277b63bcdc6ec7b'
+endpoint1 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}'
 
-endpoint2 = 'https://api.spoonacular.com/food/trivia/random?apiKey=999aeb4a958e44708277b63bcdc6ec7b'
+endpoint2 = f'https://api.spoonacular.com/food/trivia/random?apiKey={my_key}'
 
 
-endpoint3 = 'https://api.spoonacular.com/food/jokes/random?apiKey=999aeb4a958e44708277b63bcdc6ec7b'
+endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey={my_key}'
 
 
 @app.route("/")
@@ -38,9 +38,9 @@ def main():
         foodFacts.append(singleFact)
     
     jokesList = []
-    endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey=cd39d1a49e8a4ac994819fb6a1a19431'
+    endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey={my_key}'
     for i in range(3):
-        req2 = requests.get('https://api.spoonacular.com/food/jokes/random?apiKey=999aeb4a958e44708277b63bcdc6ec7b')
+        req2 = requests.get('https://api.spoonacular.com/food/jokes/random?apiKey=f5d47b4fce7a4e9d912132576aea091c')
         data = req2.json()
         # print(data)
         singleJoke =  data.get('text')
@@ -150,8 +150,8 @@ def search():
     values = []
     if form.validate_on_submit():
         word = request.form.get("searched")
-        my_key = "&apiKey=999aeb4a958e44708277b63bcdc6ec7b"
-        my_key2 = "?apiKey=999aeb4a958e44708277b63bcdc6ec7b"
+        my_key = "&apiKey=f5d47b4fce7a4e9d912132576aea091c"
+        my_key2 = "?apiKey=f5d47b4fce7a4e9d912132576aea091c"
         endpoint_search = 'https://api.spoonacular.com/recipes/complexSearch?query='+word+my_key
 
         r = requests.get(endpoint_search)
