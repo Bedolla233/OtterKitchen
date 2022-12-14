@@ -32,7 +32,7 @@ def main():
     foodFacts = []
 
     for i in range(3):
-        req = requests.get(endpoint2)
+        req = requests.get("https://api.spoonacular.com/food/trivia/random?apiKey=f5d47b4fce7a4e9d912132576aea091c")
         data = req.json()
         singleFact = data.get('text')
         foodFacts.append(singleFact)
