@@ -14,6 +14,11 @@
       border-radius: 0;
     }
     
+    .search{
+      margin-top: 10px;
+
+    }
+    
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
     
@@ -78,25 +83,30 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-
-        <li class="active"><a href="/"><img src="https://api.dineoncampus.com/files/test/path/ce449f9e-9fb6-410d-b362-75d03d8f8a93.png" height="30dp" width="60dp"></a></li>
-        <li class="active"><a href="/">Home</a></li>
-        <!-- <li><a href="#">Recipes</a></li> -->
-        <li><a href="/vegetarian">Vegetarian</a></li>
-        <li><a href="/vegan">Vegan</a></li>
-        <li><a href="/breakfast">Breakfast</a></li>
-        <li><a href="/lunch">Lunch</a></li>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/"><img src="https://api.dineoncampus.com/files/test/path/ce449f9e-9fb6-410d-b362-75d03d8f8a93.png" height="30dp" width="60dp"></a></li>
+          <li><a href="/vegetarian">Vegetarian</a></li>
+          <li><a href="/breakfast">Breakfast</a></li>
+          <li><a href="/lunch">Lunch</a></li>
         <li><a href="/dinner">Dinner</a></li>
-        <li><a href="/sandwhich">Sandwhich</a></li>
-        <li><a href="/random">Random</a></li>
-      </ul>
+          <li><a href="/random">Random</a></li>
+          <li><a href="/vegan">Vegan</a></li>
+          <li><a href="/sandwhich">Sandwich</a></li>
+          
+        </ul>
+        <form method = "POST" action="{{ url_for('search') }}" class = "search"><input class="searchfield" type="search" placeholder="search" aria-label="Search" name="searched">
+          {{ form.hidden_tag() }}
+          <button class = "SearchButton" type="submit">
+              Search
+          </button>
+        </form>
+      </div>
+
     </div>
-  </div>
-</nav>
+  </nav>
   
 
 
@@ -139,7 +149,9 @@
 <br><br>
 
 <footer id="footer">
-  <p>Fall 2022 CST205</p>
+
+  <p>CST205 OtterKitchen</p>
+
 </footer>
 
 </body>

@@ -1,26 +1,30 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for
 import requests, json
 from flask_bootstrap import Bootstrap5
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+from flask_wtf.csrf import CSRFProtect
+import os
+
 
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 
-my_key = 'cd39d1a49e8a4ac994819fb6a1a19431'
+my_key = '999aeb4a958e44708277b63bcdc6ec7b'
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 
-endpoint1 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}'
+csrf = CSRFProtect(app)
+csrf.init_app(app)
 
-endpoint2 = f'https://api.spoonacular.com/food/trivia/random?apiKey={my_key}'
+endpoint1 = 'https://api.spoonacular.com/recipes/random?apiKey=999aeb4a958e44708277b63bcdc6ec7b'
 
-endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey=cd39d1a49e8a4ac994819fb6a1a19431'
+endpoint2 = 'https://api.spoonacular.com/food/trivia/random?apiKey=999aeb4a958e44708277b63bcdc6ec7b'
 
-'''foodFacts = []
-for i in range(3):
-    req = requests.get(endpoint2)
-    data = req.json()
-    singleFact = data.get("text")
-    foodFacts.append(singleFact)'''
 
+endpoint3 = 'https://api.spoonacular.com/food/jokes/random?apiKey=999aeb4a958e44708277b63bcdc6ec7b'
 
 
 @app.route("/")
@@ -36,7 +40,7 @@ def main():
     jokesList = []
     endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey=cd39d1a49e8a4ac994819fb6a1a19431'
     for i in range(3):
-        req2 = requests.get(endpoint3)
+        req2 = requests.get('https://api.spoonacular.com/food/jokes/random?apiKey=999aeb4a958e44708277b63bcdc6ec7b')
         data = req2.json()
         # print(data)
         singleJoke =  data.get('text')
@@ -56,12 +60,12 @@ def index():
         print('please try again')
     return render_template("random.html", data = data)
 
-
 endpoint0 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&tags=vegetarian&instructionsRequired=true'
 @app.route("/vegetarian")
 def veggie():
     try:
         r = requests.get(endpoint0)
+
         data = r.json()
         # print(data)
     except:
@@ -78,6 +82,7 @@ def breakfast():
     except:
         print('please try again')
     return render_template("breakfast.html", data = data)
+
 
 endpoint2 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=lunch&instructionsRequired=true'
 @app.route("/lunch")
@@ -115,8 +120,10 @@ def sandwhich():
             foodData.append(i['id'])
             print(i['id'])
         # print(foodData)
-        endpoint5 = f'https://api.spoonacular.com/recipes/informationBulk?apiKey={my_key}&ids={foodData[0]},{foodData[4]},{foodData[2]}'
-        foodR = requests.get(endpoint5)
+        
+        endpoint4 = f'https://api.spoonacular.com/recipes/informationBulk?apiKey={my_key}&ids={foodData[0]},{foodData[4]},{foodData[2]}'
+        foodR = requests.get(endpoint4)
+
         foodFinalData = foodR.json()
 
 
@@ -135,3 +142,41 @@ def vegan():
     except:
         print('please try again')
     return render_template("vegan.html", data = data)
+
+#Search function
+@app.route('/search', methods = ["POST"])
+def search():
+    form = SearchForm()
+    values = []
+    if form.validate_on_submit():
+        word = request.form.get("searched")
+        my_key = "&apiKey=999aeb4a958e44708277b63bcdc6ec7b"
+        my_key2 = "?apiKey=999aeb4a958e44708277b63bcdc6ec7b"
+        endpoint_search = 'https://api.spoonacular.com/recipes/complexSearch?query='+word+my_key
+
+        r = requests.get(endpoint_search)
+        data = r.json()
+        number = data.get('number')
+        if (type(number) is int):
+            for entry in range(number):
+                id = data.get("results")[entry].get('id')
+                endpoint_ingredients = f'https://api.spoonacular.com/recipes/{id}/information'+my_key2
+                r2 = requests.get(endpoint_ingredients)
+                data2 = r2.json()
+                values.append(data2)
+
+        else:
+            values.append("No search results")
+
+    return render_template("search.html", form = form, values=values)
+        
+    
+@app.context_processor
+def base():
+    form = SearchForm()
+    return dict(form = form)
+#Create searchform
+class SearchForm(FlaskForm):
+    searched = StringField("searched", validators=[DataRequired()])#Checks that the field is not empty
+    submit = SubmitField("Submit")
+
