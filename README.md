@@ -8,4 +8,6 @@ Group names:
 * Marius Bjorney
 * Abigail
 
-How to Run: after downloading all files, you can run using Visual Studio or any other code compiler. Make sure to download Flask, WTForms, 
+How to Run: after downloading all files, you can run using Visual Studio or any other code compiler. Make sure to download Flask, WTForms, requests, Bootstrap
+
+Future Work: We well add more categories and well as a filter for each category
