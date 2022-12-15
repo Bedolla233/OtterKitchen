@@ -7,8 +7,8 @@ This is a website that uses Spoonacular API to get different categories of recip
   ### Group names-
     Angel Bedolla
     Grady Lanser
-    Marius Bjorney
-    Abigail
+    Marius Bjoernoey
+    Abigail Cuevas
   
   
 
