@@ -12,7 +12,7 @@ import os
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 
-my_key = 'f5d47b4fce7a4e9d912132576aea091c'
+my_key = 'd53b43f7d9d14401a56568b6af67fe2e'
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
@@ -32,7 +32,7 @@ def main():
     foodFacts = []
 
     for i in range(3):
-        req = requests.get("https://api.spoonacular.com/food/trivia/random?apiKey=f5d47b4fce7a4e9d912132576aea091c")
+        req = requests.get("https://api.spoonacular.com/food/trivia/random?apiKey=d53b43f7d9d14401a56568b6af67fe2e")
         data = req.json()
         singleFact = data.get('text')
         foodFacts.append(singleFact)
@@ -40,7 +40,7 @@ def main():
     jokesList = []
     endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey={my_key}'
     for i in range(3):
-        req2 = requests.get('https://api.spoonacular.com/food/jokes/random?apiKey=f5d47b4fce7a4e9d912132576aea091c')
+        req2 = requests.get('https://api.spoonacular.com/food/jokes/random?apiKey=d53b43f7d9d14401a56568b6af67fe2e')
         data = req2.json()
         # print(data)
         singleJoke =  data.get('text')
@@ -150,8 +150,8 @@ def search():
     values = []
     if form.validate_on_submit():
         word = request.form.get("searched")
-        my_key = "&apiKey=f5d47b4fce7a4e9d912132576aea091c"
-        my_key2 = "?apiKey=f5d47b4fce7a4e9d912132576aea091c"
+        my_key = "&apiKey=d53b43f7d9d14401a56568b6af67fe2e"
+        my_key2 = "?apiKey=d53b43f7d9d14401a56568b6af67fe2e"
         endpoint_search = 'https://api.spoonacular.com/recipes/complexSearch?query='+word+my_key
 
         r = requests.get(endpoint_search)
