@@ -7,8 +7,6 @@ from wtforms.validators import DataRequired
 from flask_wtf.csrf import CSRFProtect
 import os
 
-
-
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 
@@ -27,6 +25,9 @@ endpoint2 = f'https://api.spoonacular.com/food/trivia/random?apiKey={my_key}'
 endpoint3 = f'https://api.spoonacular.com/food/jokes/random?apiKey={my_key}'
 
 
+
+# Leads to frontpage.html and displays frontpage with food jokes and trivia
+# Created By Marius Bjoernoey
 @app.route("/")
 def main():
     foodFacts = []
@@ -50,6 +51,8 @@ def main():
     return render_template("frontpage.html", foodFacts = foodFacts, jokesList=jokesList)
 
 
+# Leads to random.html and displays random recipes
+# Created By Abigail Cuevas
 @app.route("/random")
 def index():
     try:
@@ -60,6 +63,8 @@ def index():
         print('please try again')
     return render_template("random.html", data = data)
 
+# Leads to vegetarian.html and displays vegetarian recipes
+# Created By Abigail Cuevas
 endpoint0 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&tags=vegetarian&instructionsRequired=true'
 @app.route("/vegetarian")
 def veggie():
@@ -72,6 +77,8 @@ def veggie():
         print('please try again')
     return render_template("vegetarian.html", data = data)
 
+# Leads to breakfast.html and displays breakfast recipes
+# Created By Angel Bedolla
 endpoint1 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=breakfast&instructionsRequired=true'
 @app.route("/breakfast")
 def breakfast():
@@ -83,7 +90,8 @@ def breakfast():
         print('please try again')
     return render_template("breakfast.html", data = data)
 
-
+# Leads to lunch.html and displays lunch recipes
+# Created By Grady Lanser
 endpoint2 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=lunch&instructionsRequired=true'
 @app.route("/lunch")
 def lunch():
@@ -96,6 +104,8 @@ def lunch():
     return render_template("lunch.html", data = data)
 
 
+# Leads to dinner.html and displays dinner recipes
+# Created By Grady Lanser
 endpoint3 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=dinner&instructionsRequired=true'
 @app.route("/dinner")
 def dinner():
@@ -107,6 +117,8 @@ def dinner():
         print('please try again')
     return render_template("dinner.html", data = data)
 
+# Leads to Sandwhich.html and displays sandwhich recipes
+# Created By Angel Bedolla
 endpoint4 = f'https://api.spoonacular.com/recipes/autocomplete?number=5&query=Sub&apiKey={my_key}'
 @app.route("/sandwhich")
 def sandwhich():
@@ -132,6 +144,8 @@ def sandwhich():
     return render_template("sandwhich.html", data = foodFinalData)
 
 
+# Leads to vegan.html and displays vegan recipes
+# Created By Abigail Cuevas
 endpoint6 = f'https://api.spoonacular.com/recipes/random?apiKey={my_key}&number=3&type=vegan&instructionsRequired=true'
 @app.route("/vegan")
 def vegan():
@@ -144,6 +158,8 @@ def vegan():
     return render_template("vegan.html", data = data)
 
 #Search function
+# Leads to search.html and gives recipes based off of user input
+# Created By Marius Bjoernoey
 @app.route('/search', methods = ["POST"])
 def search():
     form = SearchForm()
