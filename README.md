@@ -18,4 +18,8 @@ after downloading all files, you can run using Visual Studio or any other code c
 ## Future Work: 
 We well add more categories and well as a filter for each category
 
+## Links:
+
 Repo Link: https://github.com/Bedolla233/OtterKitchen
+
+Trello Link: https://trello.com/invite/b/vpDxJUXv/ATTI2786434752cd5c0d6bd42da74b712bddF38279D1/cst-project-group-3690 
